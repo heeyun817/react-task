@@ -31,9 +31,7 @@
   padding: 8px 16px;
   background-color: var(--accent-blue);
   border-radius: var(--radius-sm);
-  font-size: 0.9rem;
-  font-weight: 600;
-  transition: opacity 0.15s;
+  text-align: center;
 }
 
 .search-bar {

@@ -74,9 +74,9 @@ const ListPage = () => {
         </span>
       </div>
 
-      <button className="posts-create-btn">
-        <Link to="/create">글 작성</Link>
-      </button>
+      <Link className="posts-create-btn" to="/create">
+        <button>글 작성</button>
+      </Link>
 
       <form className="search-bar" onSubmit={handleSubmit(onSearch)}>
         <select {...register("postSearchType")}>
