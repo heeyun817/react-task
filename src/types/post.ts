@@ -38,3 +38,17 @@ export type PostListResponse = {
   page: number;
   size: number;
 };
+
+export type PostDetailResponse = {
+  id: number;
+  title: string;
+  content: string;
+  author: string;
+  createdAt: Date;
+  updatedAt: Date;
+  commentCount: number;
+  viewCount: number;
+  likeCount: number;
+  isLiked: boolean;
+  hashtags?: string[];
+};

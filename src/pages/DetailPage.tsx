@@ -1,5 +1,5 @@
 const DetailPage = () => {
-  return <></>;
+  return <main></main>;
 };
 
 export default DetailPage;
