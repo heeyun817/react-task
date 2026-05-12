@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { createPost } from "../apis/post";
-import PostForm from "../components/post/PostForm";
+import PostForm from "../components/form/PostForm";
 import type { PostCreateRequest } from "../types/post";
 import "./CreatePage.css";
 

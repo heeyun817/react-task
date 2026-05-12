@@ -1,0 +1,128 @@
+.detail-page {
+  padding: 40px 20px;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  box-sizing: border-box;
+}
+
+.detail-article {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 32px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  background-color: var(--bg-secondary);
+}
+
+.detail-title {
+  margin: 0;
+  font-size: xx-large;
+}
+
+.detail-meta {
+  display: flex;
+  gap: 16px;
+  margin-top: 16px;
+  color: var(--text-secondary);
+}
+
+.detail-created-at {
+  color: var(--text-secondary);
+}
+
+.detail-stat-section {
+  margin-top: 24px;
+}
+
+.detail-stat-list {
+  display: flex;
+  gap: 12px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.detail-stat-list li {
+  padding: 8px;
+}
+
+.detail-tag-section {
+  margin-top: 24px;
+}
+
+.detail-tag-list {
+  display: flex;
+  gap: 10px;
+  margin: 0;
+  list-style: none;
+}
+
+.detail-tag-item {
+  padding: 8px 14px;
+  color: var(--accent-blue);
+}
+
+.detail-content-section {
+  margin-top: 36px;
+}
+
+.detail-content {
+  margin: 0;
+  color: var(--text-primary);
+}
+
+.detail-like-section {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.like-button {
+  padding: 14px 24px;
+  border: 1px solid var(--border-color);
+  border-radius: 999px;
+  background-color: var(--bg-tertiary);
+  color: var(--text-primary);
+  cursor: pointer;
+}
+
+.like-button.liked {
+  color: var(--accent-pink);
+  background-color: var(--bg-secondary);
+}
+
+.detail-action-nav {
+  display: flex;
+  gap: 12px;
+  margin-top: 40px;
+}
+
+.outline-btn,
+.danger-btn {
+  height: 42px;
+  padding: 0 18px;
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.outline-btn {
+  background-color: var(--bg-tertiary);
+  color: var(--text-primary);
+}
+
+.danger-btn {
+  background-color: var(--accent-red);
+  color: var(--text-primary);
+}
+
+.detail-state-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.detail-state-text {
+  color: var(--text-secondary);
+}
