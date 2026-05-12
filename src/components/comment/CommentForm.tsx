@@ -1,8 +1,8 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import z from "zod";
-import { useNavigate } from "react-router-dom";
 import type { CommentCreateRequest } from "../../types/comment";
+import "./CommentForm.css";
 
 const schema = z.object({
   content: z
@@ -28,11 +28,10 @@ type Props = {
 };
 
 const CommentForm = ({ defaultValues, onSubmit, serverError }: Props) => {
-  const navigate = useNavigate();
-
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors, isSubmitting },
   } = useForm<CommentFormValues>({
     resolver: zodResolver(schema),
@@ -45,43 +44,64 @@ const CommentForm = ({ defaultValues, onSubmit, serverError }: Props) => {
     },
   });
 
-  const submit = (values: CommentFormValues) =>
-    onSubmit({
+  const submit = async (values: CommentFormValues) => {
+    await onSubmit({
       content: values.content,
       author: values.author,
-      password: values.password ?? "",
+      password: values.password,
     });
+    reset();
+  };
 
   return (
-    <form onSubmit={handleSubmit(submit)} className="create-form">
-      <label>
+    <form onSubmit={handleSubmit(submit)} className="comment-form">
+      <h3 className="comment-form-title">댓글 작성</h3>
+
+      <div className="comment-form-meta">
+        <label className="comment-form-field">
+          작성자
+          <input
+            type="text"
+            placeholder="작성자명을 입력하세요"
+            {...register("author")}
+          />
+          {errors.author && (
+            <span className="field-error">{errors.author.message}</span>
+          )}
+        </label>
+
+        <label className="comment-form-field">
+          비밀번호
+          <input
+            type="password"
+            placeholder="비밀번호를 입력하세요"
+            {...register("password")}
+          />
+          {errors.password && (
+            <span className="field-error">{errors.password.message}</span>
+          )}
+        </label>
+      </div>
+
+      <label className="comment-form-field">
         내용
-        <textarea {...register("content")} />
+        <textarea
+          placeholder="댓글을 입력하세요"
+          {...register("content")}
+        />
         {errors.content && (
           <span className="field-error">{errors.content.message}</span>
         )}
       </label>
-      <label>
-        작성자
-        <input type="text" {...register("author")} />
-        {errors.author && (
-          <span className="field-error">{errors.author.message}</span>
-        )}
-      </label>
 
-      <label>
-        비밀번호
-        <input type="password" {...register("password")} />
-        {errors.password && (
-          <span className="field-error">{errors.password.message}</span>
-        )}
-      </label>
+      {serverError && <p className="comment-form-error">{serverError}</p>}
 
-      {serverError && <p className="create-error">{serverError}</p>}
-
-      <section className="create-actions">
-        <button onClick={() => navigate(-1)}>이전</button>
-        <button type="submit" disabled={isSubmitting}>
+      <section className="comment-form-actions">
+        <button
+          type="submit"
+          className="comment-form-submit"
+          disabled={isSubmitting}
+        >
           {isSubmitting ? "등록 중..." : "등록"}
         </button>
       </section>
