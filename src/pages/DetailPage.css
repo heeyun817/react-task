@@ -14,18 +14,6 @@
   background-color: var(--bg-secondary);
 }
 
-.detail-title {
-  margin: 0;
-  font-size: xx-large;
-}
-
-.detail-meta {
-  display: flex;
-  gap: 16px;
-  margin-top: 16px;
-  color: var(--text-secondary);
-}
-
 .detail-created-at {
   color: var(--text-secondary);
 }
@@ -71,40 +59,30 @@
   color: var(--text-primary);
 }
 
-.detail-like-section {
-  display: flex;
-  justify-content: center;
-  margin-top: 40px;
-}
-
-.like-button {
-  padding: 14px 24px;
-  border: 1px solid var(--border-color);
-  border-radius: 999px;
-  background-color: var(--bg-tertiary);
-  color: var(--text-primary);
-  cursor: pointer;
-}
-
-.like-button.liked {
-  color: var(--accent-pink);
-  background-color: var(--bg-secondary);
-}
-
-.detail-action-nav {
+.button-list {
   display: flex;
   gap: 12px;
   margin-top: 40px;
 }
 
 .outline-btn,
-.danger-btn {
+.danger-btn,
+.like-button {
   height: 42px;
   padding: 0 18px;
   border-radius: var(--radius-md);
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
+}
+
+.like-button {
+  background-color: var(--bg-tertiary);
+}
+
+.like-button.liked {
+  color: var(--accent-pink);
+  background-color: var(--bg-secondary);
 }
 
 .outline-btn {

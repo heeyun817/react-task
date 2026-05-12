@@ -1,0 +1,11 @@
+.detail-title {
+  margin: 0;
+  font-size: xx-large;
+}
+
+.detail-meta {
+  display: flex;
+  gap: 16px;
+  margin-top: 16px;
+  color: var(--text-secondary);
+}
