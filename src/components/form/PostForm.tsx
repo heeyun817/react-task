@@ -5,11 +5,13 @@ import type { PostCreateRequest } from "../../types/post";
 import "./PostForm.css";
 import { useNavigate } from "react-router-dom";
 
-const parseHashtags = (input: string): string[] =>
-  input
-    .split(/[,]+/)
-    .map((tag) => tag.trim())
-    .filter((tag) => tag.length > 0);
+const parseHashtags = (value: string | undefined): string[] =>
+  value
+    ? value
+        .split(",")
+        .map((tag) => tag.trim())
+        .filter(Boolean)
+    : [];
 
 const schema = (isEdit: boolean) =>
   z.object({
@@ -31,21 +33,24 @@ const schema = (isEdit: boolean) =>
           .string()
           .min(2, "비밀번호는 2자 이상이어야 합니다.")
           .max(200, "비밀번호는 200자 이하로 입력해주세요."),
-    hashtags: z.string().superRefine((value, ctx) => {
-      const tags = parseHashtags(value);
-      if (tags.length > 5) {
-        ctx.addIssue({
-          code: "custom",
-          message: "해시태그는 최대 5개까지 등록 가능합니다.",
-        });
-      }
-      if (tags.some((tag) => tag.length > 50)) {
-        ctx.addIssue({
-          code: "custom",
-          message: "해시태그는 각 50자 이하로 입력해주세요.",
-        });
-      }
-    }),
+    hashtags: z
+      .string()
+      .optional()
+      .superRefine((value, ctx) => {
+        const tags = parseHashtags(value);
+        if (tags.length > 5) {
+          ctx.addIssue({
+            code: "custom",
+            message: "해시태그는 최대 5개까지 등록 가능합니다.",
+          });
+        }
+        if (tags.some((tag) => tag.length > 50)) {
+          ctx.addIssue({
+            code: "custom",
+            message: "해시태그는 각 50자 이하로 입력해주세요.",
+          });
+        }
+      }),
   });
 
 export type PostFormValues = z.infer<ReturnType<typeof schema>>;

@@ -1,0 +1,15 @@
+.detail-stat-section {
+  margin-top: 24px;
+}
+
+.detail-stat-list {
+  display: flex;
+  gap: 12px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.detail-stat-list li {
+  padding: 8px;
+}

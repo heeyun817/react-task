@@ -43,7 +43,10 @@ const EditPage = () => {
     <main className="update-page">
       <h1>게시글 수정</h1>
       <PostForm
-        defaultValues={data}
+        defaultValues={{
+          ...data,
+          hashtags: data.hashtags?.join(", ") ?? "",
+        }}
         onSubmit={handleSubmit}
         serverError={submitError}
         isEdit={true}

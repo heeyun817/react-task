@@ -1,4 +1,5 @@
 import type { PostDetailResponse } from "../../types/post";
+import "./Stat.css";
 
 const Stat = ({ viewCount, likeCount, commentCount }: PostDetailResponse) => {
   return (
