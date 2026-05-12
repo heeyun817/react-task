@@ -1,6 +1,7 @@
 import type {
   PasswordVerifyRequest,
   PostCreateRequest,
+  PostDeleteRequest,
   PostDetailResponse,
   PostListParams,
   PostListResponse,
@@ -54,4 +55,12 @@ export async function updatePost(
     request,
   );
   return data;
+}
+
+// 삭제
+export async function deletePost(
+  request: PostDeleteRequest,
+  postId: number,
+): Promise<void> {
+  await axiosInstance.delete(`/api/posts/${postId}`, { data: request });
 }

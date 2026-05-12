@@ -2,10 +2,21 @@ import { useNavigate } from "react-router-dom";
 import type { PostDetailResponse } from "../../types/post";
 import PasswordModal from "./PasswordModal";
 import { useState } from "react";
+import { deletePost, verifyPassword } from "../../apis/post";
 
 const ButtonList = ({ id, isLiked, likeCount }: PostDetailResponse) => {
   const navigate = useNavigate();
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [mode, setMode] = useState<"edit" | "delete" | null>(null);
+
+  const handleConfirm = async (password: string) => {
+    if (mode === "edit") {
+      await verifyPassword({ password }, id);
+      navigate(`/post/${id}/update`);
+    } else if (mode === "delete") {
+      await deletePost({ password }, id);
+      navigate("/");
+    }
+  };
 
   return (
     <>
@@ -27,19 +38,25 @@ const ButtonList = ({ id, isLiked, likeCount }: PostDetailResponse) => {
         <button
           type="button"
           className="outline-btn"
-          onClick={() => setIsModalOpen(true)}
+          onClick={() => (mode === "edit" ? setMode(null) : setMode("edit"))}
         >
           수정
         </button>
 
-        <button type="button" className="danger-btn">
+        <button
+          type="button"
+          className="danger-btn"
+          onClick={() =>
+            mode === "delete" ? setMode(null) : setMode("delete")
+          }
+        >
           삭제
         </button>
       </nav>
       <PasswordModal
-        postId={id}
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
+        isOpen={mode !== null}
+        onClose={() => setMode(null)}
+        onConfirm={handleConfirm}
       />
     </>
   );

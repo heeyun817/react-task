@@ -1,36 +1,32 @@
 import { useState } from "react";
-import { verifyPassword } from "../../apis/post";
 import "./PasswordModal.css";
-import { useNavigate } from "react-router-dom";
 
 type Props = {
-  postId: number;
   isOpen: boolean;
   onClose: () => void;
+  onConfirm: (password: string) => Promise<void>;
 };
 
-const PasswordModal = ({ postId, isOpen, onClose }: Props) => {
+const PasswordModal = ({ isOpen, onClose, onConfirm }: Props) => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const navigate = useNavigate();
 
   if (!isOpen) return null;
-
-  const handleSubmit = async (e: React.SyntheticEvent) => {
-    e.preventDefault();
-    try {
-      await verifyPassword({ password }, postId);
-      navigate(`/post/${postId}/update`);
-      handleClose();
-    } catch {
-      setError("비밀번호가 일치하지 않습니다.");
-    }
-  };
 
   const handleClose = () => {
     setPassword("");
     setError("");
     onClose();
+  };
+
+  const handleSubmit = async (e: React.SyntheticEvent) => {
+    e.preventDefault();
+    try {
+      await onConfirm(password);
+      handleClose();
+    } catch {
+      setError("비밀번호가 일치하지 않습니다.");
+    }
   };
 
   return (

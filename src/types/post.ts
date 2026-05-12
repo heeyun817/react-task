@@ -12,6 +12,10 @@ export type PostUpdateRequest = {
   hashtags?: string[];
 };
 
+export type PostDeleteRequest = {
+  password: string;
+};
+
 export type PasswordVerifyRequest = {
   password: string;
 };
