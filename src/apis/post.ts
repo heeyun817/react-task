@@ -1,8 +1,10 @@
 import type {
+  PasswordVerifyRequest,
   PostCreateRequest,
   PostDetailResponse,
   PostListParams,
   PostListResponse,
+  PostUpdateRequest,
 } from "../types/post";
 import { axiosInstance } from "./axios";
 
@@ -26,6 +28,30 @@ export async function getPostList(
 export async function getPost(postId: number): Promise<PostDetailResponse> {
   const { data } = await axiosInstance.get<PostDetailResponse>(
     `/api/posts/${postId}`,
+  );
+  return data;
+}
+
+// 수정 전 비밀번호 확인
+export async function verifyPassword(
+  request: PasswordVerifyRequest,
+  postId: number,
+): Promise<number> {
+  const { data } = await axiosInstance.post<number>(
+    `/api/posts/${postId}/verify-password`,
+    request,
+  );
+  return data;
+}
+
+// 수정
+export async function updatePost(
+  request: PostUpdateRequest,
+  postId: number,
+): Promise<number> {
+  const { data } = await axiosInstance.put<number>(
+    `/api/posts/${postId}`,
+    request,
   );
   return data;
 }

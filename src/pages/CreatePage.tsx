@@ -21,7 +21,11 @@ const CreatePage = () => {
   return (
     <main className="create-page">
       <h1>게시글 작성</h1>
-      <PostForm onSubmit={handleSubmit} serverError={submitError} />
+      <PostForm
+        onSubmit={handleSubmit}
+        serverError={submitError}
+        isEdit={false}
+      />
     </main>
   );
 };

@@ -1,0 +1,21 @@
+.detail-page {
+  padding: 40px 20px;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  box-sizing: border-box;
+}
+
+.update-page {
+  max-width: 1080px;
+
+  margin: 0 auto;
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.update-page h1 {
+  font-size: x-large;
+  color: var(--text-primary);
+}

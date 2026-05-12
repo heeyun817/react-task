@@ -6,6 +6,16 @@ export type PostCreateRequest = {
   hashtags?: string[];
 };
 
+export type PostUpdateRequest = {
+  title: string;
+  content: string;
+  hashtags?: string[];
+};
+
+export type PasswordVerifyRequest = {
+  password: string;
+};
+
 export type PostSearchType = "TITLE" | "AUTHOR" | "CONTENT" | "HASHTAG";
 
 export type PostSearchCondition = {
