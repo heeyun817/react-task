@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import type { PostResponse } from "../types/post";
+import type { PostResponse } from "../../types/post";
 import "./PostCard.css";
 
 const PostCard = ({

@@ -44,8 +44,8 @@ export type PostDetailResponse = {
   title: string;
   content: string;
   author: string;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: string;
+  updatedAt: string;
   commentCount: number;
   viewCount: number;
   likeCount: number;

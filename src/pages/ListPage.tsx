@@ -1,24 +1,15 @@
 import { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { getPostList } from "../apis/post";
-import PostCard from "../components/PostCard";
+import PostCard from "../components/list/PostCard";
+import PostSearchBar from "../components/list/PostSearchBar";
 import "./ListPage.css";
 import type {
   PostListResponse,
   PostResponse,
   PostSearchCondition,
-  PostSearchType,
 } from "../types/post";
-import "./ListPage.css";
 import { PAGE_SIZE } from "../constants/post";
-
-type SearchForm = {
-  postSearchType: PostSearchType | "";
-  keyword: string;
-  startDate: string;
-  endDate: string;
-};
 
 const ListPage = () => {
   const [data, setData] = useState<PostListResponse>();
@@ -26,34 +17,14 @@ const ListPage = () => {
   const [condition, setCondition] = useState<PostSearchCondition>({});
   const [error, setError] = useState<string>("");
 
-  const { register, handleSubmit, reset } = useForm<SearchForm>({
-    defaultValues: {
-      postSearchType: "",
-      keyword: "",
-      startDate: "",
-      endDate: "",
-    },
-  });
-
   useEffect(() => {
     getPostList({ ...condition, page, size: PAGE_SIZE })
       .then(setData)
       .catch(() => setError("게시글을 불러오지 못했습니다."));
   }, [condition, page]);
 
-  const onSearch = (values: SearchForm) => {
-    setCondition({
-      postSearchType: values.postSearchType || undefined,
-      keyword: values.keyword.trim() || undefined,
-      startDate: values.startDate || undefined,
-      endDate: values.endDate || undefined,
-    });
-    setPage(0);
-  };
-
-  const onReset = () => {
-    reset();
-    setCondition({});
+  const handleSearch = (condition: PostSearchCondition) => {
+    setCondition(condition);
     setPage(0);
   };
 
@@ -75,29 +46,10 @@ const ListPage = () => {
       </div>
 
       <Link className="posts-create-btn" to="/create">
-        <button>글 작성</button>
+        글 작성
       </Link>
 
-      <form className="search-bar" onSubmit={handleSubmit(onSearch)}>
-        <select {...register("postSearchType")}>
-          <option value="">검색 기준</option>
-          <option value="TITLE">제목</option>
-          <option value="AUTHOR">작성자</option>
-          <option value="CONTENT">본문</option>
-          <option value="HASHTAG">해시태그</option>
-        </select>
-
-        <input type="text" placeholder="검색어" {...register("keyword")} />
-
-        <input type="date" {...register("startDate")} />
-        <span>~</span>
-        <input type="date" {...register("endDate")} />
-
-        <button type="submit">검색</button>
-        <button type="button" onClick={onReset}>
-          초기화
-        </button>
-      </form>
+      <PostSearchBar onSearch={handleSearch} />
 
       {error && <p className="posts-error">{error}</p>}
 
