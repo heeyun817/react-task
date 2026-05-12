@@ -7,6 +7,7 @@ import Header from "../components/detail/Header";
 import Stat from "../components/detail/Stat";
 import Hashtag from "../components/detail/Hashtag";
 import ButtonList from "../components/detail/ButtonList";
+import Comment from "../components/comment/Comment";
 
 const DetailPage = () => {
   const { id } = useParams();
@@ -47,6 +48,9 @@ const DetailPage = () => {
 
         <ButtonList {...data} />
       </article>
+      <section className="comment-section">
+        <Comment postId={Number(id)} />
+      </section>
     </main>
   );
 };
