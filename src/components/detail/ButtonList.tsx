@@ -2,11 +2,13 @@ import { useNavigate } from "react-router-dom";
 import type { PostDetailResponse } from "../../types/post";
 import PasswordModal from "./PasswordModal";
 import { useState } from "react";
-import { deletePost, verifyPassword } from "../../apis/post";
+import { deletePost, toggleLike, verifyPassword } from "../../apis/post";
 
 const ButtonList = ({ id, isLiked, likeCount }: PostDetailResponse) => {
   const navigate = useNavigate();
   const [mode, setMode] = useState<"edit" | "delete" | null>(null);
+  const [like, setLike] = useState<boolean>(isLiked);
+  const [count, setCount] = useState<number>(likeCount);
 
   const handleConfirm = async (password: string) => {
     if (mode === "edit") {
@@ -18,14 +20,25 @@ const ButtonList = ({ id, isLiked, likeCount }: PostDetailResponse) => {
     }
   };
 
+  const handleLike = async (postId: number) => {
+    try {
+      const data = await toggleLike(postId);
+      setLike(data.isLiked);
+      setCount(data.likeCount);
+    } catch {
+      throw new Error("좋아요에 실패했습니다.");
+    }
+  };
+
   return (
     <>
       <nav className="button-list">
         <button
           type="button"
-          className={`like-button ${isLiked ? "liked" : ""}`}
+          className={`like-button ${like ? "liked" : ""}`}
+          onClick={() => handleLike(id)}
         >
-          ♥ {likeCount}
+          ♥ {count}
         </button>
         <button
           type="button"

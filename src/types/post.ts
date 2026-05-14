@@ -66,3 +66,8 @@ export type PostDetailResponse = {
   isLiked: boolean;
   hashtags?: string[];
 };
+
+export type PostLikeResponse = {
+  isLiked: boolean;
+  likeCount: number;
+};

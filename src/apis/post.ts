@@ -3,6 +3,7 @@ import type {
   PostCreateRequest,
   PostDeleteRequest,
   PostDetailResponse,
+  PostLikeResponse,
   PostListParams,
   PostListResponse,
   PostUpdateRequest,
@@ -63,4 +64,12 @@ export async function deletePost(
   postId: number,
 ): Promise<void> {
   await axiosInstance.delete(`/api/posts/${postId}`, { data: request });
+}
+
+// 좋아요
+export async function toggleLike(postId: number): Promise<PostLikeResponse> {
+  const { data } = await axiosInstance.post<PostLikeResponse>(
+    `/api/posts/${postId}/like`,
+  );
+  return data;
 }
