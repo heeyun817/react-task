@@ -9,6 +9,7 @@ import type {
 import CommnetCard from "./CommnetCard";
 import "./Comment.css";
 import { PAGE_SIZE } from "../../constants/comment";
+import Pagination from "../common/Pagination";
 
 interface CommentProps {
   postId: number;
@@ -55,23 +56,11 @@ const Comment = ({ postId }: CommentProps) => {
         )}
       </section>
       {comment && comment.totalElements > 0 && (
-        <nav className="pagination">
-          <button
-            onClick={() => setPage((p) => Math.max(0, p - 1))}
-            disabled={page === 0}
-          >
-            ←
-          </button>
-          <span>
-            {page + 1} / {comment.totalPages}
-          </span>
-          <button
-            onClick={() => setPage((p) => p + 1)}
-            disabled={page + 1 >= comment.totalPages}
-          >
-            →
-          </button>
-        </nav>
+        <Pagination
+          page={page}
+          totalPages={comment.totalPages}
+          setPage={setPage}
+        />
       )}
     </>
   );

@@ -11,6 +11,7 @@ import type {
 } from "../types/post";
 import { PAGE_SIZE } from "../constants/post";
 import { getUserCount } from "../apis/user";
+import Pagination from "../components/common/Pagination";
 
 const ListPage = () => {
   const [data, setData] = useState<PostListResponse>();
@@ -93,23 +94,7 @@ const ListPage = () => {
       </section>
 
       {data && data.totalPostCount > 0 && (
-        <nav className="pagination">
-          <button
-            onClick={() => setPage((p) => Math.max(0, p - 1))}
-            disabled={page === 0}
-          >
-            ←
-          </button>
-          <span>
-            {page + 1} / {totalPages}
-          </span>
-          <button
-            onClick={() => setPage((p) => p + 1)}
-            disabled={page + 1 >= totalPages}
-          >
-            →
-          </button>
-        </nav>
+        <Pagination page={page} totalPages={totalPages} setPage={setPage} />
       )}
     </main>
   );
