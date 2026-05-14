@@ -7,7 +7,7 @@ export async function createComment(
   postId: number,
 ): Promise<number> {
   const { data } = await axiosInstance.post<number>(
-    `/api/posts/${postId}`,
+    `/api/comments/${postId}`,
     request,
   );
   return data;

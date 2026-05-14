@@ -44,8 +44,8 @@ const CommentForm = ({ defaultValues, onSubmit, serverError }: Props) => {
     },
   });
 
-  const submit = async (values: CommentFormValues) => {
-    await onSubmit({
+  const submit = (values: CommentFormValues) => {
+    onSubmit({
       content: values.content,
       author: values.author,
       password: values.password,
@@ -85,10 +85,7 @@ const CommentForm = ({ defaultValues, onSubmit, serverError }: Props) => {
 
       <label className="comment-form-field">
         내용
-        <textarea
-          placeholder="댓글을 입력하세요"
-          {...register("content")}
-        />
+        <textarea placeholder="댓글을 입력하세요" {...register("content")} />
         {errors.content && (
           <span className="field-error">{errors.content.message}</span>
         )}
