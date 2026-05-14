@@ -28,3 +28,7 @@ export type CommentUpdateRequest = {
   content: string;
   password: string;
 };
+
+export type CommentDeleteRequest = {
+  password: string;
+};

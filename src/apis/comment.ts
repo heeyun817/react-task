@@ -1,5 +1,6 @@
 import type {
   CommentCreateRequest,
+  CommentDeleteRequest,
   CommentListParams,
   CommentListResponse,
   CommentUpdateRequest,
@@ -33,11 +34,19 @@ export async function getCommentList(
 // 수정
 export async function updateComment(
   request: CommentUpdateRequest,
-  postId: number,
+  commentId: number,
 ): Promise<number> {
   const { data } = await axiosInstance.put<number>(
-    `/api/comments/${postId}`,
+    `/api/comments/${commentId}`,
     request,
   );
   return data;
+}
+
+// 삭제
+export async function deleteComment(
+  request: CommentDeleteRequest,
+  commentId: number,
+): Promise<void> {
+  await axiosInstance.delete(`/api/comments/${commentId}`, { data: request });
 }
