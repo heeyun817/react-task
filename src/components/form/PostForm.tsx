@@ -95,7 +95,11 @@ const PostForm = ({ defaultValues, onSubmit, serverError, isEdit }: Props) => {
     <form onSubmit={handleSubmit(submit)} className="create-form">
       <label>
         제목
-        <input type="text" {...register("title")} />
+        <input
+          placeholder="제목을 입력하세요"
+          type="text"
+          {...register("title")}
+        />
         {errors.title && (
           <span className="field-error">{errors.title.message}</span>
         )}
@@ -103,7 +107,12 @@ const PostForm = ({ defaultValues, onSubmit, serverError, isEdit }: Props) => {
 
       <label>
         작성자
-        <input type="text" {...register("author")} disabled={isEdit} />
+        <input
+          placeholder="작성자명을 입력하세요"
+          type="text"
+          {...register("author")}
+          disabled={isEdit}
+        />
         {errors.author && (
           <span className="field-error">{errors.author.message}</span>
         )}
@@ -111,7 +120,7 @@ const PostForm = ({ defaultValues, onSubmit, serverError, isEdit }: Props) => {
 
       <label>
         내용
-        <textarea {...register("content")} />
+        <textarea placeholder="내용을 입력하세요" {...register("content")} />
         {errors.content && (
           <span className="field-error">{errors.content.message}</span>
         )}
@@ -132,7 +141,11 @@ const PostForm = ({ defaultValues, onSubmit, serverError, isEdit }: Props) => {
       {!isEdit && (
         <label>
           비밀번호
-          <input type="password" {...register("password")} />
+          <input
+            placeholder="비밀번호를 입력하세요"
+            type="password"
+            {...register("password")}
+          />
           {errors.password && (
             <span className="field-error">{errors.password.message}</span>
           )}

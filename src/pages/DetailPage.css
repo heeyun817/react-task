@@ -88,3 +88,9 @@
 .detail-state-text {
   color: var(--text-secondary);
 }
+
+.comment-section {
+  max-width: 1080px;
+  margin: 0 auto;
+  margin-top: 24px;
+}

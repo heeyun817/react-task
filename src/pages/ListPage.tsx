@@ -10,18 +10,26 @@ import type {
   PostSearchCondition,
 } from "../types/post";
 import { PAGE_SIZE } from "../constants/post";
+import { getUserCount } from "../apis/user";
 
 const ListPage = () => {
   const [data, setData] = useState<PostListResponse>();
   const [page, setPage] = useState(0);
   const [condition, setCondition] = useState<PostSearchCondition>({});
   const [error, setError] = useState<string>("");
+  const [userCount, setUserCount] = useState(0);
 
   useEffect(() => {
     getPostList({ ...condition, page, size: PAGE_SIZE })
       .then(setData)
       .catch(() => setError("게시글을 불러오지 못했습니다."));
   }, [condition, page]);
+
+  useEffect(() => {
+    getUserCount()
+      .then(setUserCount)
+      .catch(() => setError("유저수를 불러오지 못했습니다."));
+  }, []);
 
   const handleSearch = (condition: PostSearchCondition) => {
     setCondition(condition);
@@ -37,6 +45,9 @@ const ListPage = () => {
       <h1>게시글 목록</h1>
 
       <div className="posts-summary">
+        <span>
+          접속 유저 수: <strong>{userCount ?? 0}</strong>명
+        </span>
         <span>
           전체 게시글: <strong>{data?.totalPostCount ?? 0}</strong>개
         </span>
