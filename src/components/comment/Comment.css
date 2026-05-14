@@ -1,0 +1,11 @@
+.comment-list {
+  max-width: 1080px;
+  margin: 0 auto;
+  margin-top: 10px;
+}
+.comment-list-title {
+  font-size: x-large;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+}

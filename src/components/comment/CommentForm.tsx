@@ -23,7 +23,7 @@ export type CommentFormValues = z.infer<typeof schema>;
 
 type Props = {
   defaultValues?: Partial<CommentFormValues>;
-  onSubmit: (payload: CommentCreateRequest) => Promise<number>;
+  onSubmit: (payload: CommentCreateRequest) => Promise<void>;
   serverError?: string;
 };
 
@@ -51,6 +51,7 @@ const CommentForm = ({ defaultValues, onSubmit, serverError }: Props) => {
       password: values.password,
     });
     reset();
+    window.location.reload();
   };
 
   return (

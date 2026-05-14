@@ -1,0 +1,45 @@
+.comment-card {
+  padding: 16px 20px;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+}
+
+.comment-card-content {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.comment-card-meta {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  color: var(--text-muted);
+}
+
+.comment-outline-btn {
+  background-color: var(--bg-tertiary);
+  color: var(--text-primary);
+}
+
+.comment-danger-btn {
+  background-color: var(--accent-red);
+  color: var(--text-primary);
+}
+
+.comment-button-section {
+  display: inline-flex;
+  gap: 5px;
+  color: var(--text-primary);
+}
+
+.comment-outline-btn,
+.comment-danger-btn {
+  padding: 2px 5px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+}

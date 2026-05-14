@@ -4,7 +4,7 @@ export type CommentCreateRequest = {
   password: string;
 };
 
-export type CommentResponse = {
+export type CommentResponses = {
   id: number;
   content: string;
   author: string;
@@ -12,9 +12,19 @@ export type CommentResponse = {
 };
 
 export type CommentListResponse = {
-  commentResponse: CommentResponse[];
+  commentResponses: CommentResponses[];
   totalElements: number;
   totalPages: number;
   page: number;
   size: number;
+};
+
+export type CommentListParams = {
+  page?: number;
+  size?: number;
+};
+
+export type CommentUpdateRequest = {
+  content: string;
+  password: string;
 };
